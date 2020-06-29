@@ -1,0 +1,58 @@
+loader.preload = file:../../../../Runtime/libsysdb.so
+loader.exec = file:/tmp/duet
+loader.execname = duet
+loader.env.LD_LIBRARY_PATH = /lib:/lib/x86_64-linux-gnu:/usr/lib:/usr/lib/x86_64-linux-gnu
+loader.debug_type = none
+
+fs.mount.lib.type = chroot
+fs.mount.lib.path = /lib
+fs.mount.lib.uri = file:../../../../Runtime
+
+fs.mount.hostlib.type = chroot
+fs.mount.hostlib.path = /lib/x86_64-linux-gnu
+fs.mount.hostlib.uri = file:/lib/x86_64-linux-gnu
+
+fs.mount.usrlib.type = chroot
+fs.mount.usrlib.path = /usr/lib/x86_64-linux-gnu
+fs.mount.usrlib.uri = file:/usr/lib/x86_64-linux-gnu
+
+fs.mount.bin.type = chroot
+fs.mount.bin.path = /bin
+fs.mount.bin.uri = file:/bin
+
+fs.mount.tmp.type = chroot
+fs.mount.tmp.path = /tmp
+fs.mount.tmp.uri = file:/tmp
+
+# sgx-related
+sgx.debug = 1
+sgx.enclave_size = 512M
+sgx.thread_num = 6
+sgx.trusted_files.ld = file:../../../../Runtime/ld-linux-x86-64.so.2
+sgx.trusted_files.libc = file:../../../../Runtime/libc.so.6
+sgx.trusted_files.librt = file:../../../../Runtime/librt.so.1
+sgx.trusted_files.libm = file:../../../../Runtime/libm.so.6
+sgx.trusted_files.libpthread = file:../../../../Runtime/libpthread.so.0
+sgx.trusted_files.libutil = file:../../../../Runtime/libutil.so.1
+sgx.trusted_files.libdl = file:../../../../Runtime/libdl.so.2
+sgx.trusted_files.libselinux = file:/lib/x86_64-linux-gnu/libselinux.so.1
+sgx.trusted_files.libacl = file:/lib/x86_64-linux-gnu/libacl.so.1
+sgx.trusted_files.libpcre = file:/lib/x86_64-linux-gnu/libpcre.so.3
+sgx.trusted_files.libattr = file:/lib/x86_64-linux-gnu/libattr.so.1
+sgx.trusted_files.libgmp = file:/usr/lib/x86_64-linux-gnu/libgmp.so.10
+
+#sgx.allowed_files.example = file:/tmp/gd-pb.ed.duet
+sgx.allowed_files.epsilon = file:/tmp/epsilon.txt
+sgx.allowed_files.delta = file:/tmp/delta.txt
+sgx.allowed_files.query = file:/tmp/query.ed.duet
+sgx.allowed_files.database = file:/tmp/database.csv
+sgx.allowed_files.database_encrypted = file:/tmp/database.csv.encrypted
+sgx.allowed_files.output = file:/tmp/output.json
+sgx.allowed_files.runquery = file:/tmp/runquery
+sgx.allowed_files.duetpublickey = file:/tmp/duetpublickey
+sgx.allowed_files.duetpublickey_pem = file:/tmp/duetpublickey.pem
+
+sgx.ra_client_spid = 3E0E08EBDA6A349FC8493EB97FC214BB
+sgx.ra_client_key = d16d302575a74bfca8f4994339d160f2
+sgx.ra_client_linkable = 1
+sgx.ra_accept_group_out_of_date = 1

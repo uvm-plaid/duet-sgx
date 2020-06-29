@@ -1,0 +1,3 @@
+{
+    "query": "let main = pλ .\n              df :  𝕄 [L∞ , U | ★ , 𝐝 ℕ ∷ 𝐝 ℕ ∷ [] ]\n              ⇒\n  let ε = ℝ⁺[1.0] in\n  let δ = ℝ⁺[0.00001] in\n  gauss[ℝ⁺[1.0], ε, δ] <df> { real (rows df) }\nin main"
+}

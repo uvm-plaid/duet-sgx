@@ -1,0 +1,26 @@
+diff --git a/Pal/src/host/Linux-SGX/sgx_platform.c b/Pal/src/host/Linux-SGX/sgx_platform.c
+index 2d10059..e51f395 100644
+--- a/Pal/src/host/Linux-SGX/sgx_platform.c
++++ b/Pal/src/host/Linux-SGX/sgx_platform.c
+@@ -198,6 +198,21 @@ int contact_intel_attest_service(const char* subkey, const sgx_quote_nonce_t* no
+                                  "{\"isvEnclaveQuote\":\"%s\",\"nonce\":\"%s\"}",
+                                  quote_str, nonce_str);
+ 
++    /* Save Quote to file for Testing Purposes */
++    ret = INLINE_SYSCALL(open, 3, "quote.tmp", O_CREAT|O_WRONLY|O_TRUNC, 0700);
++    if (IS_ERR(ret)) {
++        SGX_DBG(DBG_E, "Cannot create quote file!\n");
++        goto failed;
++    }
++    int report_fd;
++    report_fd = ret;
++    ret = INLINE_SYSCALL(write, 3, report_fd, https_request, https_request_len);
++    if (IS_ERR(ret)) {
++        SGX_DBG(DBG_E, "Error writing to quote file!\n");
++        goto failed;
++    }
++    INLINE_SYSCALL(close, 1, report_fd);
++
+     ret = INLINE_SYSCALL(write, 3, fds[1], https_request, https_request_len);
+     if (IS_ERR(ret))
+         goto failed;

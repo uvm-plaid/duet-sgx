@@ -1,0 +1,9 @@
+resolver: lts-13.2
+extra-deps:
+  - git: git@github.com:uvm-plaid/uvmhs.git
+    commit: fd4300c1b68e86f7414f1267325ecc7a4dd74c6a
+  - git: git@github.com:uvm-plaid/duet-internal.git
+    commit: 5fddd261de39fe797f4ad4df4fa216b2866b0dcf
+  - cryptostore-0.2.0.0
+  - normaldistribution-1.1.0.3
+system-ghc: true
